@@ -5,7 +5,8 @@
   "description": "Dependency-free CLI for checking Base Mainnet and Base Sepolia RPC connectivity.",
   "type": "module",
   "scripts": {
-    "check": "node scripts/check-base-network.mjs"
+    "check": "node scripts/check-base-network.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"
