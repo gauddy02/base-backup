@@ -41,6 +41,16 @@ $env:BASE_NETWORK="mainnet"
 npm run check
 ```
 
+## Tests
+
+Run the automated CLI tests with Node.js's built-in test runner:
+
+```bash
+npm test
+```
+
+The tests cover unsupported-network handling in both human-readable and JSON modes. They do not require a live RPC endpoint.
+
 ## Machine-readable output
 
 Pass `--json` through npm to get a JSON report suitable for scripts and monitoring:
