@@ -41,7 +41,32 @@ $env:BASE_NETWORK="mainnet"
 npm run check
 ```
 
-## Example output
+## Machine-readable output
+
+Pass `--json` through npm to get a JSON report suitable for scripts and monitoring:
+
+```bash
+npm run check -- --json
+```
+
+Example (values are illustrative):
+
+```json
+{
+  "status": "OK",
+  "network": "Base Sepolia",
+  "chainId": 84532,
+  "blockNumber": 12345678,
+  "latencyMs": {
+    "chainId": 42,
+    "blockNumber": 39
+  }
+}
+```
+
+The latency values are measured in milliseconds for each JSON-RPC request. A failed check returns a JSON object with `status: "FAILED"` and an error message, and exits with a non-zero status code.
+
+## Example human-readable output
 
 ```text
 Base RPC health check
@@ -49,17 +74,19 @@ Network: Base Sepolia
 RPC: https://sepolia.base.org
 Chain ID: 84532 (verified)
 Latest block: 12345678
+Latency: chain ID 42 ms, block number 39 ms
 Status: OK
 ```
 
-The block number above is illustrative; your result will reflect the live endpoint.
+The block number and latency above are illustrative; your result will reflect the live endpoint.
 
 ## What it checks
 
 1. Sends an `eth_chainId` JSON-RPC request.
 2. Confirms the returned chain ID matches the selected Base network.
 3. Requests `eth_blockNumber` to verify the endpoint is responding to blockchain queries.
-4. Prints a concise status report and exits with a non-zero code on failure.
+4. Measures request latency and prints either human-readable or JSON output.
+5. Exits with a non-zero code on failure.
 
 ## Configuration
 
